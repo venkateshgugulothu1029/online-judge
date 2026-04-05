@@ -6,6 +6,12 @@ app = Flask(__name__)
 TEST_INPUT = "2 7 11 15\n9"
 EXPECTED_OUTPUT = "0 1"
 
+# Home route (important)
+@app.route("/")
+def home():
+    return "Online Judge Running 🚀"
+
+# Test route (for browser testing)
 @app.route("/test")
 def test():
     output = run_code("print('0 1')", TEST_INPUT)
@@ -16,6 +22,7 @@ def test():
         "status": "Accepted" if result else "Wrong Answer"
     }
 
+# Main submit API
 @app.route("/submit", methods=["POST"])
 def submit():
     data = request.json
