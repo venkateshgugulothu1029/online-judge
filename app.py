@@ -6,9 +6,15 @@ app = Flask(__name__)
 TEST_INPUT = "2 7 11 15\n9"
 EXPECTED_OUTPUT = "0 1"
 
-@app.route("/")
-def home():
-    return "Online Judge Running 🚀"
+@app.route("/test")
+def test():
+    output = run_code("print('0 1')", TEST_INPUT)
+    result = check_output(output, EXPECTED_OUTPUT)
+
+    return {
+        "output": output,
+        "status": "Accepted" if result else "Wrong Answer"
+    }
 
 @app.route("/submit", methods=["POST"])
 def submit():
