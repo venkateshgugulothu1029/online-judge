@@ -21,7 +21,8 @@ def submit():
 
         return jsonify({
             "output": output,
-            "status": "Accepted" if result else "Wrong Answer"
+            "status": "Accepted" if result else "Wrong Answer",
+            "input": TEST_INPUT
         })
 
     except Exception as e:
